@@ -9,6 +9,10 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var exphbs = require("express-handlebars");
+// require passport 
+var pssport = require("./config/passport");
+// bycrpt to safely store passwords
+
 
 //Set up for Express server/app
 var app = express();
@@ -30,8 +34,14 @@ app.use(methodOverride("_method"));
 //set up for static directory
 app.use(express.static(process.cwd() + "./public"));
 
-// Routes
 
+//set up for passport test
+app.use(session({ secret: "money chirp", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// Routes
 require("./routes/html-routes.js")(app);
 require("./routes/post-api-routes.js")(app);
 require("./routes/author-api-routes.js")(app);
