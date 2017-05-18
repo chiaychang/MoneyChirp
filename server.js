@@ -38,7 +38,7 @@ require("./routes/author-api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app
 
-db.sequelize.sync({ force: true }).then(function()) {
+db.sequelize.sync({ force: true }).then(function() {
 	app.listen(app.get("port"), function() {
 		console.log("Chirp! you are on PORT : " + PORT);
 	});
