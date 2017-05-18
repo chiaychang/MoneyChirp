@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/chiaychang/MoneyChirp#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.8",
     "sequelize": "^3.30.4"
   }
 }
