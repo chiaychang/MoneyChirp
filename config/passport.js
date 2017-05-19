@@ -29,7 +29,7 @@ passport.use(new LocalStrategy(
 }));
 
 
-passport.serialzeUser(function(user, cb) {
+passport.serializeUser(function(user, cb) {
 	cb(null, user);
 });
 

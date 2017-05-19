@@ -27,5 +27,5 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
-	return MoneyChirp;
+	return mc_user;
 }
