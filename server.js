@@ -9,6 +9,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var exphbs = require("express-handlebars");
+var path = require("path");
 
 // require passport 
 var passport = require("./config/passport");
@@ -35,6 +36,7 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
+app.use("/static", express.static(path.join(__dirname, "public")));
 //set up for static directory
 // app.use(express.static(process.cwd() + "./public"));
 
