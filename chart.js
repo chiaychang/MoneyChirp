@@ -4,7 +4,7 @@
         data: {
         labels: ["Google", "Amazon", "Facebook", "Uber", "General Electric", "AT&T", "Tesla"],
         datasets: [{
-            label: "My First dataset",
+            label: ["Twitter Trending Score"],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
