@@ -5,88 +5,65 @@ var Twitter = require('twitter');
 
 var client = new Twitter(accountInfo);
 
-var companies = [{
-    name: 'Apple',
-    handle: 'Apple',
-    score: 0
-}, {
-    name: 'Google',
-    hadle: 'Google',
-    score: 0
-}, {
-    name: 'Facebook',
-    handle: 'facebook',
-    score: 0
-
-}];
-
 var scoreArray = [];
+var twitter = {
+    companies: [{
+        name: 'Apple',
+        handle: 'Apple',
+        score: null
+    }, {
+        name: 'Google',
+        hadle: 'Google',
+        score: null
+    }, {
+        name: 'Facebook',
+        handle: 'facebook',
+        score: null
+    }],
 
-// function trend(totalPostReach) {
-//     companies[i].reach = totalPostReach;
-//     console.log(companies[i].reach);
-// }
-
-function getTweets() {
- 
-    for (var i = 0; i < companies.length; i++) {
-
-
-        var score = 0;
-        var params = { q: '%40' + companies[i].name, count: 3, lang: 'en'};
-
-        client.get('search/tweets', params,function(error, response) {
-            if (error) {
-                console.log('Error occurred: ' + error);
-            } else if (!error) {
+    companiesArray: [],
 
 
-              
-               // console.log(response.statuses.length);
+    getTweets: function() {
 
-                
-                for (j = 0; j < response.statuses.length; j++) {
+        for (var i = 0; i < this.companies.length; i++) {
 
-                	// console.log(response.statuses[j].retweet_count, response.statuses[j].favorite_count);
-                    var postReach = (response.statuses[j].retweet_count +
-                        response.statuses[j].favorite_count);
+           
 
-                    score += postReach;
-          
+            var params = { q: '%40' + this.companies[i].name, count: 3, lang: 'en', index: i };
+
+            client.get('search/tweets', params, function(error, response) {
+                if (error) {
+                    console.log('Error occurred: ' + error);
+                } else if (!error) {
+
+                   var trendingScore = 0;
+                    console.log(response);
+
+                    for (j = 0; j < response.statuses.length; j++) {
+
+                        // console.log(response.statuses[j].retweet_count, response.statuses[j].favorite_count);
+                        var postReach = (response.statuses[j].retweet_count +
+                            response.statuses[j].favorite_count);
+                        console.log(postReach);
+                        trendingScore += postReach;
+                      
+
+                    }
+
+                      console.log(trendingScore);
+                      scoreArray.push(trendingScore);
+                    // scoreArray.push(trendingScore);
+                    console.log(scoreArray);
+
                 }
 
-               // scoreArray.push(score);
-               // console.log(scoreArray);
-           
-            
+            });
 
-               //companies[params.index].reach = totalPostReach;
-     
-            }
-           
-        });
+        }
 
-    
-       // totalPostReach = companies[i].reach;
-         // console.log(i);
-    }
-
-
+    },
 }
 
-function assignScore (companies,scoreArray){
-	
-	console.log(companies);
-	
-	for(var k = 0; k< companies.length; k++){
-	    console.log(scoreArray[k]); 
-		// console.log(companies[k]);
-	}
-
-}
-
-
-getTweets();
-// console.log(companies.length);
-assignScore(companies, scoreArray);
+twitter.getTweets();
 
