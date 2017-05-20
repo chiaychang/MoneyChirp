@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	var signuUpForm = $("form.signup");
+	var signUpForm = $("form.signup");
 	var emailInput = $("input#email-input");
 	var passwordInput = $('input#password-input');
 
-	signuUpForm.on("submit", function(event) {
+	signUpForm.on("submit", function(event) {
 		event.preventDefault();
 		var userData = {
 			email: emailInput.val().trim(),
@@ -15,8 +15,8 @@ $(document).ready(function() {
 		}
 
 		signUpUser(userData.email, userData.password);
-		emailInput.val("");
-		passwordInput.val("");
+    	emailInput.val("");
+    	passwordInput.val("");
 	});
 
 	function signUpUser(email, password) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
 			email: email,
 			password: password
 		}).then(function(data) {
-			console.log(data);
+			window.location.replace(data);
 		}).catch(function(err) {
 			console.log(err);
 		});

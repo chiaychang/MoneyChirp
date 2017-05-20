@@ -23,9 +23,10 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		hooks: {
 			beforeCreate: function(user, options, cb) {
-				user.password = bcrypt.hashSync(user.password, bc)
+				user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+				cb(null, options);
 			}
 		}
 	});
 	return mc_user;
-}
+};
