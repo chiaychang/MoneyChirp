@@ -35,14 +35,14 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.text());
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-
+//the js file for the web page is in "public" folder
 app.use("/static", express.static(path.join(__dirname, "public")));
 //set up for static directory
 // app.use(express.static(process.cwd() + "./public"));
 
 
 //set up for passport test
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(session({ secret: "Money Chirp", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -54,7 +54,7 @@ require("./routes/api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
 	app.listen(app.get("port"), function() {
 		console.log("Chirp! you are on PORT : " + app.get("port"));
 	});
