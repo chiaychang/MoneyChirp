@@ -25,7 +25,8 @@
             data: [165, 59, 80, 81, 15, 59, 70],
         }],
         options: {
-            responsive: false
+             responsive: true,
+             maintainAspectRatio: true
         }
     }
     });
