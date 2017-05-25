@@ -26,17 +26,16 @@ $(document).ready(function() {
 	});
 
 
-	// searchForm.on("submit", function(event) {
-	// 	event.preventDefault();
+	searchForm.on("submit", function(event) {
+		event.preventDefault();
 
-	// 	var searchData = {
-	// 		search: companySearch.val().trim(),
-	// 		email: userEmail
-	// 	};
+		var searchData = {
+			search: companySearch.val().trim()
+		};
 		
-	// 	followCompany(searchData.search, searchData.email);
-	// 	companySearch.val("");
-	// });
+		searchCompany(searchData.search);
+		companySearch.val("");
+	});
 
 
 	function signUpUser(email, password) {
@@ -51,17 +50,17 @@ $(document).ready(function() {
 	}
 
 
-	// function followCompany(company, user) {
-	// 	//its important that we route to search vs. members like we did in the signup function
-	// 	//the scrip currently stops here
-	// 	$.post("/api/search", {
-	// 		company_name: company,
-	// 	}).then(function(data) {
-	// 		window.location.href = "/members";
-	// 	}).catch(function(err) {
-	// 		console.log(err);
-	// 	});
-	// }
+	function searchCompany(company) {
+		//its important that we route to search vs. members like we did in the signup function
+		//the scrip currently stops here
+		$.post("/api/search", {
+			company_name: company.toUpperCase()
+		}).then(function(data) {
+			window.location.href = "/members";
+		}).catch(function(err) {
+			console.log(err);
+		});
+	}
 
 });
 

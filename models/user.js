@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 		email: {
 			type: DataTypes.STRING,
 			// primaryKey: true,
-			allNulll: false,
+			allNull: false,
 			unique: true,
 			validate: {
 				isEmail: true
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		companyId: {
 			type: DataTypes.STRING,
-			allNulll: true
+			allNull: true
 		}
 	}, {
 		instanceMethods: {

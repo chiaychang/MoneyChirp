@@ -21,12 +21,27 @@ module.exports = function(app) {
 
 	app.post("/api/search", function(req, res) {
 
-		db.company.create({
-			company_name: req.body.company_name,
+		// console.log("from company api " + req.body.company_name)
+
+		// db.company_list.create({
+		// 	company_name: req.body.company_name,
+		// }).then(function(dbCompany) {
+		// 	req.json(dbCompany);
+		// }).catch(function(err) {
+		// 	res.json(err);
+		// });
+
+		var companyName = req.body.company_name;
+
+		console.log("pre db log " + companyName);
+
+		// find company
+		db.company_list.findAll({
+			where: {
+				company_name: companyName
+			}
 		}).then(function(dbCompany) {
-			req.json(dbCompany);
-		}).catch(function(err) {
-			res.json(err);
+			console.log("this is the result from find all " + dbCompany);
 		});
 	});
 

@@ -1,4 +1,4 @@
-// var orm = require("../config/orm.js");
+// var orm = require("./orm.js");
 
 // var company_list = {
 // 	create: function(cols, vals, cb) {
@@ -14,13 +14,18 @@ module.exports = function(sequelize, DataTypes) {
 	const company_list = sequelize.define("company_list", {
 		company_name: {
 			type: DataTypes.STRING,
+			allNull: true
 		},
 		twitter_handle: {
-			type: DataTypes.STRING
+			type: DataTypes.STRING,
+			allNull: true
 		},
 		stock_sym: {
-			type: DataTypes.STRING
+			type: DataTypes.STRING,
+			allNull: true
 		}
+	}, {
+		timestamps: false
 	});
 	return company_list;
 };
