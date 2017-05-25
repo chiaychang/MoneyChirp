@@ -1,8 +1,15 @@
+
+    var fs = require("fs");
+    var twitter = require("./twitter.js");
+
+    twitter.twitter.getParams();
+
+
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-        labels: ["Google", "Amazon", "Facebook", "Uber", "General Electric", "AT&T", "Tesla"],
+        labels: twitter.companyArray ,
         datasets: [{
             label: ["Twitter Trending Score"],
             backgroundColor: [
@@ -22,7 +29,7 @@
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1,
-            data: [165, 59, 80, 81, 15, 59, 70],
+            data: twitter.scoreArray,
         }],
         options: {
              responsive: true,
