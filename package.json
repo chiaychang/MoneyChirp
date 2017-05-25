@@ -23,17 +23,9 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.3",
     "method-override": "^2.3.8",
-<<<<<<< HEAD
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-sequelize": "^0.7.0",
     "sequelize": "^3.30.4"
   }
-=======
-    "mysql": "^2.13.0",
-    "sequelize": "^3.30.4",
-    "twitter": "^1.7.0"
-  },
-  "description": ""
->>>>>>> 6cc6ccc7039c03ddc6336bb91b1c57b8f9731b73
 }
