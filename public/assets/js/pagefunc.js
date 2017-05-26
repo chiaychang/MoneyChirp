@@ -64,9 +64,7 @@ $(document).ready(function() {
 
 
 	function searchCompany(company) {
-		$.get("/api/search", {
-			company_name: company
-		});
+		//function for join table
 	}
 
 });

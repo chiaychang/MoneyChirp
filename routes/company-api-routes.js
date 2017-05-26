@@ -20,32 +20,6 @@ module.exports = function(app) {
 	// });
 
 	app.get("/api/search", function(req, res) {
-
-		// console.log("from company api " + req.body.company_name)
-
-		// db.company_list.create({
-		// 	company_name: req.body.company_name,
-		// }).then(function(dbCompany) {
-		// 	req.json(dbCompany);
-		// }).catch(function(err) {
-		// 	res.json(err);
-		// });
-
-		var companyName = req.body.company_name;
-		console.log("===========================");
-		console.log("");
-		console.log("pre db log " + companyName);
-		console.log("");
-		console.log("===========================");
-
-		// find company
-		db.company_list.findAll({
-			where: {
-				company_name: req.body.company_name
-			}
-		}).then(function(dbCompany) {
-			console.log("this is the result from find all " + dbCompany);
-		});
-	});
+		//need a api request for the join table
 
 };

@@ -1,15 +1,3 @@
-// var orm = require("./orm.js");
-
-// var company_list = {
-// 	create: function(cols, vals, cb) {
-// 		orm.create("company_list", cols, vals, function(res) {
-// 			cb(res);
-// 		});
-// 	}
-// };
-
-// module.exports = company_list;
-
 module.exports = function(sequelize, DataTypes) {
 	const company_list = sequelize.define("company_list", {
 		company_name: {
@@ -27,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		classMethods: {
 			associate: function(models) {
+				// created join table here called "following"
 				company_list.belongsToMany(models.User, {through: 'Following'})
 			}
 		}

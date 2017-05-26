@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
 		//connecting info here to the following companies table
 		classMethods: {
 			associate: function(models) {
-				// User.hasMany(models.company_list)
+				//new JOIN table
 				User.belongsToMany(models.company_list, {through: 'Following'})
 			},
 			validPassword: function(password, passwd, done, user) {
@@ -58,10 +58,6 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		timestamps: false
 	});
-
-	// const this.mc_user = sequelize.define(this.mc_user, {
-	// 	following: DataTypes.STRING
-	// });
 
 	return User;
 };
