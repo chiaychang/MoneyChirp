@@ -3,7 +3,11 @@ var LocalStrategy = require("passport-local").Strategy;
 
 var db = require("../models");
 
+<<<<<<< HEAD
+//
+=======
 
+>>>>>>> c6f5e2d296c9c95418c2fff33305cc9d4bca150a
 passport.use(new LocalStrategy(
 {
 	usernameField: "email"
@@ -30,6 +34,16 @@ passport.use(new LocalStrategy(
 
 
 passport.serializeUser(function(user, cb) {
+<<<<<<< HEAD
+	cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+	cb(null, obj);
+});
+
+module.exports = passport;
+=======
   cb(null, user);
 });
 
@@ -38,3 +52,4 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 module.exports = passport;
+>>>>>>> c6f5e2d296c9c95418c2fff33305cc9d4bca150a
