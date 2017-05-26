@@ -9,6 +9,8 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var exphbs = require("express-handlebars");
 var path = require("path");
+//jQuery
+var $ = require("jquery");
 // require passport 
 var passport = require("./config/passport");
 //express session login, similar to firebase sessions
@@ -43,6 +45,10 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
+require("./routes/data-api-routes.js")(app);
+
+var twitter = require("./twitter.js");
+twitter.getParams();
 
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.
