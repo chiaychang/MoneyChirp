@@ -25,6 +25,13 @@ module.exports = function(sequelize, DataTypes) {
 			allNull: true
 		}
 	}, {
+		classMethods: {
+			associate: function(models) {
+				company_list.belongsToMany(models.User, {through: 'Following'})
+			}
+		}
+	},
+	 {
 		timestamps: false
 	});
 	return company_list;

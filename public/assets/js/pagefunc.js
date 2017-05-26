@@ -30,7 +30,7 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		var searchData = {
-			search: companySearch.val().trim()
+			search: companySearch.val().trim().toUpperCase()
 		};
 		
 		searchCompany(searchData.search);
@@ -50,15 +50,22 @@ $(document).ready(function() {
 	}
 
 
+	// function searchCompany(company) {
+	// 	//its important that we route to search vs. members like we did in the signup function
+	// 	//the scrip currently stops here
+	// 	$.post("/api/search", {
+	// 		company_name: company
+	// 	}).then(function(data) {
+	// 		window.location.href = "/members";
+	// 	}).catch(function(err) {
+	// 		console.log(err);
+	// 	});
+	// }
+
+
 	function searchCompany(company) {
-		//its important that we route to search vs. members like we did in the signup function
-		//the scrip currently stops here
-		$.post("/api/search", {
-			company_name: company.toUpperCase()
-		}).then(function(data) {
-			window.location.href = "/members";
-		}).catch(function(err) {
-			console.log(err);
+		$.get("/api/search", {
+			company_name: company
 		});
 	}
 

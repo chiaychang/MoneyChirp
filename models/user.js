@@ -12,7 +12,8 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			// primaryKey: true,
 			allNull: false,
-			unique: true,
+			//for testing lets leave this off
+			// unique: true,
 			validate: {
 				isEmail: true
 			}
@@ -39,7 +40,10 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		//connecting info here to the following companies table
 		classMethods: {
-			
+			associate: function(models) {
+				// User.hasMany(models.company_list)
+				User.belongsToMany(models.company_list, {through: 'Following'})
+			},
 			validPassword: function(password, passwd, done, user) {
 				bcrypt.compare(password, passwd, function(err, isMatch){
 					if (err) console.log(err);
