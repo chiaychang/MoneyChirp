@@ -25,6 +25,10 @@
     "method-override": "^2.3.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+<<<<<<< HEAD
+=======
+    "passport-local-sequelize": "^0.7.0",
+>>>>>>> c6f5e2d296c9c95418c2fff33305cc9d4bca150a
     "sequelize": "^3.30.4"
   }
 }

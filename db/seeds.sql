@@ -1,0 +1,10 @@
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('GOOGLE', 'GOOGLE', 'GOOGL');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('MICROSOFT', 'MICROSOFT', 'MSFT');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('TESLA', 'TESLAMOTORS', 'TSLA');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('STARBUCKS', 'STARBUCKS', 'SBUX');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('GENERAL ELECTRIC', 'GENERALELECTRIC', 'GE');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('UNITED', 'UNITED', 'UAL');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('SNAPCHAT', 'SNAPCHAT', 'SNAP');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('IBM', 'IBM', 'IBM');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('AMD', 'AMD', 'AMD');
+INSERT INTO company_lists (company_name, twitter_handle, stock_sym) VALUES ('WALMART', 'WALMART', 'WMT');
