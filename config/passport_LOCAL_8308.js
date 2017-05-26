@@ -3,21 +3,13 @@ var LocalStrategy = require("passport-local").Strategy;
 
 var db = require("../models");
 
-<<<<<<< HEAD
 
-=======
-//
->>>>>>> twitterquery
 passport.use(new LocalStrategy(
 {
 	usernameField: "email"
 }, function(email, password, done) {
 
-<<<<<<< HEAD
 	db.User.findOne({
-=======
-	db.mc_user.findOne({
->>>>>>> twitterquery
 		where: {
 			email: email
 		}
@@ -38,7 +30,6 @@ passport.use(new LocalStrategy(
 
 
 passport.serializeUser(function(user, cb) {
-<<<<<<< HEAD
   cb(null, user);
 });
 
@@ -47,13 +38,3 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 module.exports = passport;
-=======
-	cb(null, user);
-});
-
-passport.deserializeUser(function(obj, cb) {
-	cb(null, obj);
-});
-
-module.exports = passport;
->>>>>>> twitterquery
