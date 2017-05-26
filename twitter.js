@@ -42,9 +42,11 @@ var Twitter = require('twitter');
 var client = new Twitter(accountInfo);
 
 var handleArray = [];
-var scoreArray = [];
+
 
 var twitter = {
+
+    scoreArray: [],
     getParams: function() {
 
 
@@ -62,9 +64,13 @@ var twitter = {
             }
             // console.log(companyArray, handleArray);
             handleArray.forEach(twitter.getTweets);
-            setTimeout(function(){console.log(scoreArray)}, 2000);
+            setTimeout(function() { 
+                console.log(twitter.scoreArray);
+              }, 2000);
 
         });
+
+        return twitter.scoreArray;
     },
 
     getTweets: function(element, index, array) {
@@ -90,8 +96,8 @@ var twitter = {
 
                 }
 
-                console.log(element +":"+ trendingScore);
-                scoreArray.push(trendingScore);
+                console.log(element + ":" + trendingScore);
+                twitter.scoreArray.push(trendingScore);
 
             }
         });
