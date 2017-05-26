@@ -44,6 +44,9 @@ require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
 
+var twitter = require("./twitter");
+twitter.getParams();
+
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.
 db.sequelize.sync({ force: false }).then(function() {
