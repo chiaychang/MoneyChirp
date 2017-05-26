@@ -8,12 +8,19 @@ module.exports = function(app) {
 		
 		res.render("signup", hbsObject);
 		// res.sendFile(path.join(__dirname + "/../public/signup"));
+
 	});
 
 	app.get("/login", function(req, res) {
 		var hbsObject = {};
 		
 		res.render("login", hbsObject)
+	});
+
+	app.get("/select", function(req, res) {
+		var hbsObject = {};
+		console.log("isAuthenticated");
+		res.render("select", hbsObject);
 	});
 
 
