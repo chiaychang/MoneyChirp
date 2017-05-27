@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 		email: {
 			type: DataTypes.STRING,
 			// primaryKey: true,
-			allNull: false,
+			allowNull: false,
 			//for testing lets leave this off
 			// unique: true,
 			validate: {
@@ -20,11 +20,14 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		password: {
 			type: DataTypes.STRING,
-			allNulll: false
+			allowNulll: false,
+			// validate: {
+			// 	len: [6, 18]
+			// }
 		},
 		companyId: {
-			type: DataTypes.STRING,
-			allNull: true
+ 			type: DataTypes.STRING,
+			allowNull: true
 		}
 	}, {
 		instanceMethods: {
@@ -42,7 +45,8 @@ module.exports = function(sequelize, DataTypes) {
 		classMethods: {
 			associate: function(models) {
 				//new JOIN table
-				User.belongsToMany(models.company_list, {through: 'Following'})
+				User.belongsToMany(models.company_list, {through: models.Following})
+				// User.hasMany(models.company_list, { foreignKey: 'email', allowNull: false})
 			},
 			validPassword: function(password, passwd, done, user) {
 				bcrypt.compare(password, passwd, function(err, isMatch){

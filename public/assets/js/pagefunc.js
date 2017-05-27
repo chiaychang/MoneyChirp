@@ -29,12 +29,13 @@ $(document).ready(function() {
 	searchForm.on("submit", function(event) {
 		event.preventDefault();
 
-		var searchData = {
-			search: companySearch.val().trim().toUpperCase()
-		};
+		var searchData = companySearch.val().trim().toUpperCase();
+
+		// get or post? this may need to be a "put" route since we created the column by association
+		$.post("/api/" + searchData, function(data) {
+			console.log(data);
+		});
 		
-		searchCompany(searchData.search);
-		companySearch.val("");
 	});
 
 
@@ -49,10 +50,7 @@ $(document).ready(function() {
 		});
 	}
 
-
 	// function searchCompany(company) {
-	// 	//its important that we route to search vs. members like we did in the signup function
-	// 	//the scrip currently stops here
 	// 	$.post("/api/search", {
 	// 		company_name: company
 	// 	}).then(function(data) {
@@ -61,11 +59,6 @@ $(document).ready(function() {
 	// 		console.log(err);
 	// 	});
 	// }
-
-
-	function searchCompany(company) {
-		//function for join table
-	}
 
 });
 
