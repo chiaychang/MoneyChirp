@@ -25,14 +25,13 @@
     "method-override": "^2.3.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-<<<<<<< HEAD
     "passport-local-sequelize": "^0.7.0",
-    "sequelize": "^3.30.4"
-  }
-=======
     "sequelize": "^3.30.4",
     "twitter": "^1.7.0"
-  },
-   "description": ""
->>>>>>> twitterquery
+  }
+
+    
+    
+   
+
 }

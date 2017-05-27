@@ -22,4 +22,5 @@ module.exports = function(app) {
 	app.get("/api/search", function(req, res) {
 		//need a api request for the join table
 
+});
 };

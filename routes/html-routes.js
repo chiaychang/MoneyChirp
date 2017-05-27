@@ -1,15 +1,10 @@
 var path = require("path");
-<<<<<<< HEAD
 var db = require("../models");
-=======
->>>>>>> twitterquery
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 	
 	app.get("/", function(req, res) {
-<<<<<<< HEAD
-
 		if (req.user) {
 			res.redirect("/members");
 			return false;
@@ -34,13 +29,13 @@ module.exports = function(app) {
 		var hbsObject = {};
 		res.render("members", hbsObject);
 	});
-=======
-		var hbsObject = {};
-		
-		res.render("signup", hbsObject);
-		// res.sendFile(path.join(__dirname + "/../public/signup"));
 
-	});
+	// 	var hbsObject = {};
+		
+	// 	res.render("signup", hbsObject);
+	// 	// res.sendFile(path.join(__dirname + "/../public/signup"));
+
+	// });
 
 	app.get("/login", function(req, res) {
 		var hbsObject = {};
@@ -68,5 +63,5 @@ module.exports = function(app) {
 	// 		res.render("members", hbsObject);
 	// 	});
 	// });
->>>>>>> twitterquery
+
 };

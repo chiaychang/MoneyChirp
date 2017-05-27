@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // for testing, this part should be deleted once Sequelize is connected 
 // Require mysql
 var fs = require("fs");
@@ -37,16 +36,12 @@ connection.connect(function(err) {
 
 var keys = require("./keys.js");
 var accountInfo = keys.twierKeys;
-=======
-var keys = require("./keys.js");
-var accountInfo = keys.twitterKeys;
->>>>>>> twitterquery
+
 
 var Twitter = require('twitter');
 
 var client = new Twitter(accountInfo);
 
-<<<<<<< HEAD
 var companyArray = [];
 var handleArray = [];
 var scoreArray = [];
@@ -101,7 +96,7 @@ var twitter = {
                 }
             });
         }
-=======
+
 var companies = [{
     name: 'Apple',
     handle: 'Apple',
@@ -156,14 +151,9 @@ function getTweets() {
             }
         });
 
->>>>>>> twitterquery
-
-
     }
 }
 
-<<<<<<< HEAD
 module.exports= twitter;
-=======
 getTweets();
->>>>>>> twitterquery
+

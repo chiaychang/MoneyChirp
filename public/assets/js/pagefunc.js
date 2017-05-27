@@ -1,5 +1,5 @@
 $(document).ready(function() {
-<<<<<<< HEAD
+
 	// signup jQuery capter of the sign up form
 	var signUpForm = $("form.signup");
 	var emailInput = $("input#email-input");
@@ -68,37 +68,9 @@ $(document).ready(function() {
 		//function for join table
 	}
 
-});
+// });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
     var signUpForm = $("form.signup");
     var emailInput = $("input#email-input");
     var passwordInput = $('input#password-input');
@@ -132,7 +104,7 @@ $(document).ready(function() {
         }).catch(function(err) {
             console.log(err);
         });
-    }
+    };
 
  
 //this allows existing users to login to their page//
@@ -166,4 +138,4 @@ $(document).ready(function() {
     // }
 
 });
->>>>>>> twitterquery
+
