@@ -16,8 +16,7 @@ module.exports = function(sequelize, DataTypes) {
 		classMethods: {
 			associate: function(models) {
 				// created join table here called "following"
-				company_list.belongsToMany(models.User, {through: {model: models.Following}})
-				// company_list.belongsTo(models.User, {foreignKey: 'email', onDelete: 'CASCADE'})
+				company_list.belongsToMany(models.User, {through: 'Following'})
 			}
 		},
 	   	timestamps: false

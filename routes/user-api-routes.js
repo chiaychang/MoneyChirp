@@ -32,10 +32,76 @@ module.exports = function(app) {
 			res.json({});
 		}
 		else {
-			res.json({
-				email: req.user.email,
-				id: req.user.id
-			});
+			// res.json({
+			// 	email: req.user.email,
+			// 	id: req.user.id
+			// });
+			console.log(req.user.email);
+			console.log(req.user.id);
+			
+			// db.Following.findAll({
+			// 	where: {
+			// 		UserId: req.user.id
+			// 	},
+			// 	include: {
+			// 		model: db.company_list
+			// 	}
+			// }).then(function(dbTest) {
+			// 	console.log("/////////////////////");
+			// 	console.log("");
+			// 	console.log(dbTest);
+			// 	console.log("");
+			// 	console.log("/////////////////////");
+			// });
+
+			// db.User.findAll({
+			// 	include: [{
+			// 		model: db.company_list,
+			// 		through: {
+			// 			attributes: ['companyListId'],
+			// 			where: {
+			// 				UserId: req.user.id
+			// 			}
+			// 		}
+			// 	}]
+			// }).then(function(data) {
+			// 	console.log("/////////////////////");
+			// 	console.log(data);
+			// 	console.log("/////////////////////");
+			// })
+
+			// db.User.findAll({
+			// 	where: {
+			// 		id: req.user.id
+			// 	},
+			// 	include: [{
+			// 		model: db.company_list,
+			// 		through: {
+			// 			attributes: ['companyListId'],
+			// 			where: {
+			// 				UserId: req.user.id
+			// 			}
+			// 		}
+			// 	}]
+			// }).then(function(data) {
+			// 	console.log("////////////////////////");
+			// 	// console.log(data);
+			// 	console.log(data);
+			// 	console.log("////////////////////////");
+			// })
+
+			db.User.findAll({
+				where: {
+					id: req.user.id
+				},
+				include: [ db.company_list ],
+				raw: true
+			}).then(function(data) {
+				console.log("////////////////////////");
+				console.log(data);
+				console.log("////////////////////////");
+			})
+
 		}
 	});
 };

@@ -14,14 +14,21 @@ module.exports = function(app) {
 	});
 
 	//NOT IN USE RIGHT NOW
-	// app.get("/login", function(req, res) {
-	// 	var hbsObject = {};
+	app.get("/login", function(req, res) {
+		var hbsObject = {};
 			
-	// 	if (req.user) {
-	// 		res.render("members", hbsObject);
-	// 	}
+		if (req.user) {
+			res.render("members", hbsObject);
+		}
 
-	// 	res.render("login", hbsObject)
+		res.render("login", hbsObject)
+	});
+
+	//Sarah's route
+	// app.get("/select", function(req, res) {
+	// 	var hbsObject = {};
+	// 	console.log("isAuthenticated");
+	// 	res.render("select", hbsObject);
 	// });
 
 
