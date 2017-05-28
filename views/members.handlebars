@@ -19,13 +19,41 @@
 
 	</form>
 
-	{{!-- test  --}}
 	
-		{{!-- <div class="email-list">
-			{{#each company_name}}
-		</div> --}}
+
+
+
+	<div class="container">
+		
+
+		<div class="companyFollow">
+			
+
+			<h6>These are you companies that you Follow</h6>
+				
+
+
+				{{#each company_name}} {{!-- close this shit --}}
+					<li>
+						{{this.company_lists.company_name}}
+					</li>
+				{{/each}}
+
+
+
+		</div>
+
+
+		
+	</div>
 		
 	
+
+
+
+
+
+
 
 	<div class="row">
 		<div id="memberFollowingList">

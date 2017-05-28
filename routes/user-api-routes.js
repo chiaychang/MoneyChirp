@@ -90,18 +90,20 @@ module.exports = function(app) {
 			// 	console.log("////////////////////////");
 			// })
 
-			db.User.findAll({
-				where: {
-					id: req.user.id
-				},
-				include: [ db.company_list ],
-				raw: true
-			}).then(function(data) {
-				console.log("////////////////////////");
-				console.log(data);
-				console.log("////////////////////////");
-			})
-
+			//this is working!!!!! !!!!!! !!!!! !!!!!!
+			// db.User.findAll({
+			// 	where: {
+			// 		id: req.user.id
+			// 	},
+			// 	include: [ db.company_list ],
+			// 	raw: true, //into a readable json format
+			// 	nest: true	//in to a nested format to access the companies_list table
+			// }).then(function(data) {
+			// 	console.log("////////////////////////");
+			// 	console.log(data.length);
+			// 	console.log(data[0].company_lists.company_name);
+			// 	console.log("////////////////////////");
+			// })
 		}
 	});
 };

@@ -34,7 +34,27 @@ module.exports = function(app) {
 
 	app.get("/members", isAuthenticated, function(req, res) {
 
-		var hbsObject = {};
-		res.render("members", hbsObject);
+		db.User.findAll({
+				where: {
+					id: req.user.id
+				},
+				include: [ db.company_list ],
+				raw: true, //into a readable json format
+				nest: true	//in to a nested format to access the companies_list table
+			}).then(function(data) {
+				console.log("////////////////////////");
+				console.log(data.length);
+				console.log(data);
+				console.log("////////////////////////");
+
+				var hbsObject = {
+					company_name: data
+				};
+
+				console.log("this is the call to the hbsObj " + hbsObject);
+
+				res.render("members", hbsObject);
+
+			})
 	});
 };
