@@ -18,10 +18,8 @@ module.exports = function(sequelize, DataTypes) {
 				// created join table here called "following"
 				company_list.belongsToMany(models.User, {through: 'Following'})
 			}
-		}
-	},
-	 {
-		timestamps: false
+		},
+	   	timestamps: false
 	});
 	return company_list;
 };

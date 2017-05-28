@@ -13,21 +13,48 @@ module.exports = function(app) {
 	});
 
 	//NOT IN USE RIGHT NOW
-	// app.get("/login", function(req, res) {
-	// 	var hbsObject = {};
+	app.get("/login", function(req, res) {
+		var hbsObject = {};
 			
-	// 	if (req.user) {
-	// 		res.render("members", hbsObject);
-	// 	}
+		if (req.user) {
+			res.render("members", hbsObject);
+		}
 
-	// 	res.render("login", hbsObject)
+		res.render("login", hbsObject)
+	});
+
+	//Sarah's route
+	// app.get("/select", function(req, res) {
+	// 	var hbsObject = {};
+	// 	console.log("isAuthenticated");
+	// 	res.render("select", hbsObject);
 	// });
 
 
 	app.get("/members", isAuthenticated, function(req, res) {
 
-		var hbsObject = {};
-		res.render("members", hbsObject);
+		db.User.findAll({
+				where: {
+					id: req.user.id
+				},
+				include: [ db.company_list ],
+				raw: true, //into a readable json format
+				nest: true	//in to a nested format to access the companies_list table
+			}).then(function(data) {
+				console.log("////////////////////////");
+				console.log(data.length);
+				console.log(data);
+				console.log("////////////////////////");
+
+				var hbsObject = {
+					company_name: data
+				};
+
+				console.log("this is the call to the hbsObj " + hbsObject);
+
+				res.render("members", hbsObject);
+
+			})
 	});
 
 	// 	var hbsObject = {};
