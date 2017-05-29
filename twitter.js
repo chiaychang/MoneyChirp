@@ -1,30 +1,30 @@
 // for testing, this part should be deleted once Sequelize is connected 
 // Require mysql
-var fs = require("fs");
-var mysql = require("mysql");
+// var fs = require("fs");
+// var mysql = require("mysql");
 
 
-// Set up our connection information
-var connection;
-if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-    connection = mysql.createConnection({
-        port: 3306,
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "MoneyChirp_db"
-    });
-}
-// Connect to the database
-connection.connect(function(err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
-    console.log("connected as id " + connection.threadId);
-});
+// // Set up our connection information
+// var connection;
+// if (process.env.JAWSDB_URL) {
+//     connection = mysql.createConnection(process.env.JAWSDB_URL);
+// } else {
+//     connection = mysql.createConnection({
+//         port: 3306,
+//         host: "localhost",
+//         user: "root",
+//         password: "",
+//         database: "MoneyChirp_db"
+//     });
+// }
+// // Connect to the database
+// connection.connect(function(err) {
+//     if (err) {
+//         console.error("error connecting: " + err.stack);
+//         return;
+//     }
+//     console.log("connected as id " + connection.threadId);
+// });
 
 // --------------------------------------------------
 
@@ -36,12 +36,54 @@ connection.connect(function(err) {
 
 var keys = require("./keys.js");
 var accountInfo = keys.twitterKeys;
-
 var Twitter = require('twitter');
 
 var client = new Twitter(accountInfo);
+// module.exports = twitter;
+var companiesArray = [];
+var companiesScore = [];
 
-var handleArray = [];
+$(document).ready(function() {
+
+    var companyIndex = 1;
+    //add company function
+    $("#addBtn").click(function() {
+        event.preventDefault();
+        var companyPicked = $("#addInput").val();
+
+        console.log(companyPicked);
+
+
+        //*** need to figure out how to empty input after selected one company 
+        // $("#addInput").removeAttr('value');
+
+        var displayBtn = $("<button>").addClass("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent");
+        displayBtn.text(companyPicked);
+        displayBtn.addClass(companyIndex);
+        $("#following").append(displayBtn);
+        $("#following").append("  ");
+
+        companiesArray.push(companyPicked);
+        //*** delete buttons go with companies followed ---- spacing CSS issues --- will work on this later
+
+        // var deleteBtn = $("<button>").addClass(companyIndex);
+        // deleteBtn.addClass("deleteBtn mdl-button mdl-js-button mdl-button--raised").text("delete");
+
+        // $("#deleteBtns").append(deleteBtn);
+        // $("#deleteBtns").append("  ");
+
+        companyIndex++;
+
+    });
+
+    $("#runBtn").click(function() {
+        twitter.getParams();
+        runChart();
+
+    });
+});
+
+// var handleArray = [];
 
 
 var twitter = {
@@ -50,27 +92,27 @@ var twitter = {
     getParams: function() {
 
 
-        connection.query("Select * from companies", function(err, res) {
-            var companyArray = [];
+        // connection.query("Select * from companies", function(err, res) {
+        //     var companyArray = [];
 
-            if (err) {
-                throw err;
-            }
-            console.log(res);
-            for (var z = 0; z < res.length; z++) {
-                companyArray.push(res[z].name);
-                handleArray.push(res[z].handle);
+        //     if (err) {
+        //         throw err;
+        //     }
+        //     console.log(res);
+        //     for (var z = 0; z < res.length; z++) {
+        //         companyArray.push(res[z].name);
+        //         handleArray.push(res[z].handle);
 
-            }
+        //     }
             // console.log(companyArray, handleArray);
-            handleArray.forEach(twitter.getTweets);
-            setTimeout(function() { 
-                console.log(twitter.scoreArray);
-              }, 2000);
+            companiesArray.forEach(twitter.getTweets);
+            setTimeout(function() {
+                console.log(companiesScore);
+            }, 2000);
 
-        });
+        // });
 
-        return twitter.scoreArray;
+        // return twitter.scoreArray;
     },
 
     getTweets: function(element, index, array) {
@@ -97,7 +139,7 @@ var twitter = {
                 }
 
                 console.log(element + ":" + trendingScore);
-                twitter.scoreArray.push(trendingScore);
+                companiesScore.push(trendingScore);
 
             }
         });
@@ -116,4 +158,40 @@ var twitter = {
     // }
 }
 
-module.exports = twitter;
+
+
+
+function runChart() {
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: companiesArray,
+            datasets: [{
+                label: ["Twitter Trending Score"],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1,
+                data: companiesScore
+            }],
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        }
+    });
+}

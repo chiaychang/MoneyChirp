@@ -30,7 +30,7 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //the js file for the web page is in "public" folder
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use("/static", express.static(path.join(__dirname, "./public")));
 //set up for static directory
 // app.use(express.static(process.cwd() + "./public"));
 
@@ -43,6 +43,7 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
+require("./routes/data-api-routes.js")(app);
 
 // var twitter = require("./twitter");
 // twitter.getParams();
