@@ -57,6 +57,25 @@ $(document).ready(function() {
 		});	
 	});
 
+
+
+///////////////////////////////////////////////////////////
+
+	var companyBtn = $("#companyButton");
+
+	companyBtn.on('click', function() {
+		var datatype = $(this).data('companyName');
+		alert(this.company_name);
+	});
+
+	function deleteCompany() {
+		var listItemData = $(this).parent("td").parent("tr")
+	}
+
+
+///////////////////////////////////////////////////////////
+
+
 	$.get("/api/user_data").then(function(data) {
 		console.log(data);
 		$(".member-name").append(data.email);

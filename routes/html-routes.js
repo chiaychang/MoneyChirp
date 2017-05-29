@@ -13,7 +13,6 @@ module.exports = function(app) {
 		res.render("signup");
 	});
 
-	//NOT IN USE RIGHT NOW
 	app.get("/login", function(req, res) {
 		var hbsObject = {};
 			
@@ -23,14 +22,6 @@ module.exports = function(app) {
 
 		res.render("login", hbsObject)
 	});
-
-	//Sarah's route
-	// app.get("/select", function(req, res) {
-	// 	var hbsObject = {};
-	// 	console.log("isAuthenticated");
-	// 	res.render("select", hbsObject);
-	// });
-
 
 	app.get("/members", isAuthenticated, function(req, res) {
 
@@ -51,10 +42,8 @@ module.exports = function(app) {
 					company_name: data
 				};
 
-				console.log("this is the call to the hbsObj " + hbsObject);
-
 				res.render("members", hbsObject);
+			});
 
-			})
 	});
 };
