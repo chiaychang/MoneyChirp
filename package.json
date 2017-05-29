@@ -30,7 +30,8 @@
     "passport-local": "^1.0.0",
     "passport-local-sequelize": "^0.7.0",
     "sequelize": "^3.30.4",
-    "twitter": "^1.7.0"
+    "twitter": "^1.7.0",
+    "node-rest-client": "*"
   },
   "description": ""
 }
