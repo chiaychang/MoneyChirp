@@ -9,33 +9,49 @@
     <title>Chart</title>
 </head>
 <!-- Custom CSS -->
-<link rel="stylesheet" type="text/css" href="public/CSS/style.css">
-
+<link rel="stylesheet" type="text/css" href="public/assets/css/style.css">
 <!--  jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- MDL -->
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <body>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-3">Money Chirp <img src="public/images/twitter.png" style="width: 60px; height: 60px"></h1>
+            <h1 class="display-3">Money Chirp <img src="./public/images/twitter.png" style="width: 60px; height: 60px"></h1>
             <p class="lead">Never miss out on what's happening.</p>
             <hr class="my-4">
-            <div class="form-group">
-                <label for="company">Company:</label>
-                <input type="text" class="form-control col-sm-2" id="company">
-            </div>
-            <!-- Accent-colored raised button with ripple -->
-            </br>
-            </br>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                Refresh Chart
+            <h6>Add Company to List</h6>
+            <input class="awesomplete" list="mylist" id="addInput" />
+            <datalist id="mylist">
+                <option>APPLE</option>
+                <option>GOOGLE</option>
+                <option>TESLA</option>
+                <option>MICROSOFT</option>
+                <option>IBM</option>
+                <option>WALMART</option>
+                <option>SNAPCHAT</option>
+            </datalist>
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="addBtn">
+                <i class="material-icons">add</i>
             </button>
-            </p>
+            </br>
+            </br>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="runBtn">
+                Run Chart
+            </button>
+            <hr class="my-4">
+            <h6>You are following:</h6>
+            <div id="following">
+            </div>
+            <div id="deleteBtns">
+            </div>
         </div>
+    </div>
     </div>
     <div calss="container">
         <div class="row">
@@ -47,19 +63,54 @@
         </div>
     </div>
     <!-- Chart.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script type="text/javascript">
-
-function getData (){
-    
-}
-
-function runChart () {
+    var companiesArray = [];
+    var companiesScore = [];
+    $(document).ready(function() {
+        var companyIndex = 1;
+        //add company function
+        $("#addBtn").click(function() {
+            event.preventDefault();
+            var companyPicked = $("#addInput").val();
+            console.log(companyPicked);
+            //*** need to figure out how to empty input after selected one company 
+            // $("#addInput").removeAttr('value');
+            var displayBtn = $("<button>").addClass("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent");
+            displayBtn.text(companyPicked);
+            displayBtn.addClass(companyIndex);
+            $("#following").append(displayBtn);
+            $("#following").append("  ");
+            companiesArray.push(companyPicked);
+            var newChartData = {
+                labels: companiesArray,
+                data: []
+            }
+            $.post("api/chartData", newChartData, function(data) {
+                console.log("hi!");
+                console.log(data);
+                companiesScore = data.data;
+                // setTimeout(function() {
+                //     console.log(data.data);
+                // }, 6000);
+            }); //*** delete buttons go with companies followed ---- spacing CSS issues --- will work on this later
+            // var deleteBtn = $("<button>").addClass(companyIndex);
+            // deleteBtn.addClass("deleteBtn mdl-button mdl-js-button mdl-button--raised").text("delete");
+            // $("#deleteBtns").append(deleteBtn);
+            // $("#deleteBtns").append("  ");
+            companyIndex++;
+        });
+        $("#runBtn").click(function() {
+            
+            runChart();
+        });
+    });
+    function runChart() {
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Facebook","Apple","Google"],
+                labels: companiesArray,
                 datasets: [{
                     label: ["Twitter Trending Score"],
                     backgroundColor: [
@@ -79,19 +130,19 @@ function runChart () {
                         'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1,
-                    data: [ 122, 433, 500]
+                    data: companiesScore
                 }],
                 options: {
                     responsive: true,
-                     maintainAspectRatio: false
+                    maintainAspectRatio: false
                 }
             }
         });
     }
-
-    runChart();
-
     </script>
+    <!-- browserify -->
+    <!--  <script src="twitter.js"></script> -->
+    <!-- <script src="bundle.js"></script> -->
     <!-- <script type="text/javascript" src="chart.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>

@@ -1,19 +1,17 @@
 var db = require("../models");
-//we may not need passport for the following-api-routes
-// var passport = require("../config/passport");
 
 module.exports = function(app) {
 
-	// get or post/// or put
-	app.post("/api/:company_name", function(req, res) {
+	////////////////////////// ADD COMPANY //////////////////////////////////
+	app.post("/api/", function(req, res) {
 		//test for input data
 		console.log("=========================================");
 		console.log(" ");
-		console.log("this is from the following-api... " + req.params.company_name);
+		console.log("this is from the following-api... " + req.body.company_name);
 		console.log(" ");
 		console.log("=========================================");
 
-		var company_name = req.params.company_name;
+		var company_name = req.body.company_name;
 
 		db.sequelize.query(
 			'SELECT company_lists.ID ' +
@@ -26,9 +24,11 @@ module.exports = function(app) {
 
 			}).then(function(data) {
 				var companyIdNum = [];
+				
 				data.forEach(function(dataRes) {	
 					companyIdNum.push(dataRes.ID);
 				});
+				
 				//console log for testing to ensure that i am capturing the correct data
 				console.log("------------------------");
 				console.log("");
@@ -43,16 +43,16 @@ module.exports = function(app) {
 					companyListId: companyIdNum[0],
 					UserId: req.user.id
 				}).then(function(){
-					// res.redirect(307, '/api/login');
-					res.render("/members");
-				}).catch(function(err) {
-					console.log("following create err : " + err);
+					// this redirect refreshes the page to update the data
+					res.redirect("/");
 				});
 		});
-			res.redirect("/");
 	});
+	/////////////////////////////////////////////////////////////////////////////
 
-	//delete company from user list
+
+
+	////////////////////////// DELETE COMPANY //////////////////////////////////
 	app.put("/company_delete/:id", function(req, res) {
 
 		var companyId = req.params.id;
@@ -60,14 +60,16 @@ module.exports = function(app) {
 		db.Following.destroy({
 			where: {
 				companyListId: companyId,
-				UserId: req.user.idß
+				UserId: req.user.id
 			}
 		}).then(function() {
 			console.log("data was deleted!!!!");
+			// this redirect refreshes the page to update the data
 			res.redirect("/");
 		});
 
-	})
+	});
+	/////////////////////////////////////////////////////////////////////////////
 
 };
 

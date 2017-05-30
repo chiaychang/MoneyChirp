@@ -1,15 +1,15 @@
+var fs = require("fs");
+var twitter = require("./twitter.js");
 
-    var fs = require("fs");
-    var twitter = require("./twitter.js");
-
-    twitter.twitter.getParams();
+twitter.getParams();
+console.log(twitter.scoreArray);
 
 
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-        labels: twitter.companyArray ,
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: twitter.companyArray,
         datasets: [{
             label: ["Twitter Trending Score"],
             backgroundColor: [
@@ -32,8 +32,8 @@
             data: twitter.scoreArray,
         }],
         options: {
-             responsive: true,
-             maintainAspectRatio: true
+            responsive: true,
+            maintainAspectRatio: true
         }
     }
-    });
+});

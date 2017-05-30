@@ -46,34 +46,16 @@ $(document).ready(function() {
     });
 
 
-	searchForm.on("submit", function(event) {
-		event.preventDefault();
+	// searchForm.on("submit", function(event) {
+	// 	event.preventDefault();
 
-		var searchData = companySearch.val().trim().toUpperCase();
+	// 	var searchData = companySearch.val().trim().toUpperCase();
 
-		// get or post? this may need to be a "put" route since we created the column by association
-		$.post("/api/" + searchData, function(data) {
-			console.log(data);
-		});	
-	});
-
-
-
-///////////////////////////////////////////////////////////
-
-	var companyBtn = $("#companyButton");
-
-	companyBtn.on('click', function() {
-		var datatype = $(this).data('companyName');
-		alert(this.company_name);
-	});
-
-	function deleteCompany() {
-		var listItemData = $(this).parent("td").parent("tr")
-	}
-
-
-///////////////////////////////////////////////////////////
+	// 	// get or post? this may need to be a "put" route since we created the column by association
+	// 	$.post("/api/" + searchData, function(data) {
+	// 		console.log(data);
+	// 	});	
+	// });
 
 
 	$.get("/api/user_data").then(function(data) {
