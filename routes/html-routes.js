@@ -23,14 +23,7 @@ module.exports = function(app) {
 		res.render("login", hbsObject)
 	});
 
-	//Sarah's route
-	// app.get("/select", function(req, res) {
-	// 	var hbsObject = {};
-	// 	console.log("isAuthenticated");
-	// 	res.render("select", hbsObject);
-	// });
-
-
+	
 	app.get("/members", isAuthenticated, function(req, res) {
 
 		db.User.findAll({

@@ -18,6 +18,7 @@ var passport = require("./config/passport");
 
 
 
+
 //Set up for Express server/app
 var app = express();
 // var PORT = process.env.PORT || 3000;
@@ -33,9 +34,12 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //the js file for the web page is in "public" folder
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use("/static", express.static(path.join(__dirname, "/public")));
 //set up for static directory
 // app.use(express.static(process.cwd() + "./public"));
+
+//need this line to access the CSS file//
+app.use(express.static(path.join(__dirname, "/public")));
 
 
 // set up for passport test
@@ -50,19 +54,6 @@ require("./routes/company-api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.
-
-//set up for passport test
-app.use(session({ secret: "Money Chirp", resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-// Routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
-
-
-// set up to sync the sequelize models and start the express server/app
 
 db.sequelize.sync({ force: false }).then(function() {
 	app.listen(app.get("port"), function() {
