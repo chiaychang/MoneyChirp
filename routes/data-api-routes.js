@@ -13,32 +13,12 @@ var client = new Twitter(accountInfo);
 var finalScores = [];
 var companiesArray = [];
 
-var getParams = function() {
-
-    //need query in this part to get handels using names
-    // connection.query("Select * from companies", function(err, res) {
-    //     var companyArray = [];
-
-    //     if (err) {
-    //         throw err;
-    //     }
-    //     console.log(res);
-    //     for (var z = 0; z < res.length; z++) {
-    //         companyArray.push(res[z].name);
-    //         handleArray.push(res[z].handle);
-
-    //     }
-    // console.log(companyArray, handleArray);
-
-    companiesArray.forEach(getTweets);
-
-}
 
 var getTweets = function(element, index, array) {
     
     finalScores = [];
 
-    var params = { q: '%40' + element, count: 3, lang: 'en' };
+    var params = { q: '%40' + element, count: 100, lang: 'en' };
 
     client.get('search/tweets', params, function(error, response) {
         if (error) {
@@ -76,10 +56,10 @@ module.exports = function(app) {
     });
 
     app.post("/api/chartData", function(req, res) {
+
         chartData = req.body;
         companiesArray = req.body.labels;
-
-        getParams();
+        companiesArray.forEach(getTweets);
 
         setTimeout(function() {
             console.log(finalScores);
