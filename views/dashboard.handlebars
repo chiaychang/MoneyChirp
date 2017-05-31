@@ -1,0 +1,154 @@
+  <div class="container">
+
+
+        <div class="jumbotron">
+            <h1 class="display-3">Money Chirp <img src="./public/images/twitter.png" style="width: 60px; height: 60px"></h1>
+            <p class="lead">Never miss out on what's happening.</p>
+            <hr class="my-4">
+            <h6>Add Company to List</h6>
+            <input class="awesomplete" list="mylist" id="addInput" />
+            <datalist id="mylist">
+                <option>APPLE</option>
+                <option>GOOGLE</option>
+                <option>TESLA</option>
+                <option>MICROSOFT</option>
+                <option>IBM</option>
+                <option>WALMART</option>
+                <option>SNAPCHAT</option>
+            </datalist>
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="addBtn">
+                <i class="material-icons">add</i>
+            </button>
+            </br>
+            </br>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="runBtn">
+                Run Chart
+            </button>
+            <hr class="my-4">
+            <h6>You are following:</h6>
+            <div id="following">
+            </div>
+            <div id="deleteBtns">
+            </div>
+
+
+            <form action="/api/" method="POST">
+                <div class="row">
+                    <div class="col-md-3"></div>
+
+                         <div class="form-group col-md-6 col-sm-10 col-xs-10">
+
+                            <center><lable for="new_company" class="companyName_placement">Follow a Stock</label>
+
+                            <input type="text" name="company_name" class="form-control awesomplete">
+                        </div>
+
+                    <div class="col-md-3"></div>
+                 </div>
+
+                <center>
+                    <button id="submit-button" type="submit" class="btn btn-danger">Add Stock</button>
+                </center>
+    </form>
+
+
+
+        </div>
+
+
+
+    </div>
+    </div>
+    <div calss="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <h2>Who's Trending?</h2>
+                <canvas id="myChart" style="width:400px; height:200px"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript">
+    var companiesArray = [];
+    var companiesScore = [];
+    $(document).ready(function() {
+        var companyIndex = 1;
+        //add company function
+        $("#addBtn").click(function() {
+            event.preventDefault();
+            var companyPicked = $("#addInput").val();
+            console.log(companyPicked);
+            //*** need to figure out how to empty input after selected one company 
+            // $("#addInput").removeAttr('value');
+            var displayBtn = $("<button>").addClass("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent");
+            displayBtn.text(companyPicked);
+            displayBtn.addClass(companyIndex);
+            $("#following").append(displayBtn);
+            $("#following").append("  ");
+            companiesArray.push(companyPicked);
+            var newChartData = {
+                labels: companiesArray,
+                data: []
+            }
+            $.post("api/chartData", newChartData, function(data) {
+                console.log("hi!");
+                console.log(data);
+                companiesScore = data.data;
+                // setTimeout(function() {
+                //     console.log(data.data);
+                // }, 6000);
+            }); //*** delete buttons go with companies followed ---- spacing CSS issues --- will work on this later
+            // var deleteBtn = $("<button>").addClass(companyIndex);
+            // deleteBtn.addClass("deleteBtn mdl-button mdl-js-button mdl-button--raised").text("delete");
+            // $("#deleteBtns").append(deleteBtn);
+            // $("#deleteBtns").append("  ");
+            companyIndex++;
+        });
+        $("#runBtn").click(function() {
+            
+            runChart();
+        });
+    });
+    function runChart() {
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: companiesArray,
+                datasets: [{
+                    label: ["Twitter Trending Score"],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: companiesScore
+                }],
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            }
+        });
+    }
+    </script>
+    <!-- browserify -->
+    <!--  <script src="twitter.js"></script> -->
+    <!-- <script src="bundle.js"></script> -->
+    <!-- <script type="text/javascript" src="chart.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
