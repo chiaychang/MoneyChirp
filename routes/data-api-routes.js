@@ -13,6 +13,7 @@ var client = new Twitter(accountInfo);
 var finalScores = [];
 var companiesArray = [];
 
+<<<<<<< HEAD
 var getParams = function() {
 
     //need query in this part to get handels using names
@@ -33,12 +34,18 @@ var getParams = function() {
     companiesArray.forEach(getTweets);
 
 }
+=======
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8
 
 var getTweets = function(element, index, array) {
     
     finalScores = [];
 
+<<<<<<< HEAD
     var params = { q: '%40' + element, count: 3, lang: 'en' };
+=======
+    var params = { q: '%40' + element, count: 100, lang: 'en' };
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8
 
     client.get('search/tweets', params, function(error, response) {
         if (error) {
@@ -76,10 +83,17 @@ module.exports = function(app) {
     });
 
     app.post("/api/chartData", function(req, res) {
+<<<<<<< HEAD
         chartData = req.body;
         companiesArray = req.body.labels;
 
         getParams();
+=======
+
+        chartData = req.body;
+        companiesArray = req.body.labels;
+        companiesArray.forEach(getTweets);
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8
 
         setTimeout(function() {
             console.log(finalScores);
@@ -96,4 +110,8 @@ module.exports = function(app) {
     });
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8

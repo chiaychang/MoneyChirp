@@ -114,6 +114,7 @@ var twitter = {
 
         // return twitter.scoreArray;
     },
+<<<<<<< HEAD
 
     getTweets: function(element, index, array) {
 
@@ -130,6 +131,24 @@ var twitter = {
 
                 for (j = 0; j < response.statuses.length; j++) {
 
+=======
+
+    getTweets: function(element, index, array) {
+
+
+        var params = { q: '%40' + element, count: 3, lang: 'en' };
+
+        client.get('search/tweets', params, function(error, response) {
+            if (error) {
+                console.log('Error occurred: ' + error);
+            } else if (!error) {
+
+                var trendingScore = 0;
+                console.log(response);
+
+                for (j = 0; j < response.statuses.length; j++) {
+
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8
                     // console.log(response.statuses[j].retweet_count, response.statuses[j].favorite_count);
                     var postReach = (response.statuses[j].retweet_count +
                         response.statuses[j].favorite_count);
@@ -194,4 +213,8 @@ function runChart() {
             }
         }
     });
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8

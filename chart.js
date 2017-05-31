@@ -36,4 +36,8 @@ var myChart = new Chart(ctx, {
             maintainAspectRatio: true
         }
     }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8

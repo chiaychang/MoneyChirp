@@ -1,3 +1,12 @@
+
+<div class="row">
+	<center>
+	{{!-- handle bars to insert into main.handlebars CENTER--}}
+	<div class="col-md-8 col-sm-5 col-xs-5">
+		<h4>hi and welcome</h4>
+		{{#each mc_user}}
+
+		{{/each}}
 <div class="container-fluid">
 
 	<div class="container">
@@ -7,12 +16,26 @@
 	</div>	
 
 
+<<<<<<< .merge_file_Mvjfb5
 	{{!-- <form class="search-add">
 		<div class="form-group">
 			<input type="search" class="form-group" id="search-input" placeholder="AAPL">
 			<button type="submit" class="btn btn-default"> Search </button>
 		</div>
 	</form> --}}
+=======
+	<input class="awesomplete" list="mylist" />
+<datalist id="mylist">
+{{!-- 	this part will be replace by helper {{#each company}}{{/each}} --}}
+	<option>APPLE</option>
+	<option>GOOGLE</option>
+	<option>TESLA</option>
+	<option>MICROSOFT</option>
+	<option>IBM</option>
+	<option>WALMART</option>
+	<option>SNAPCHAT</option>
+</datalist>
+>>>>>>> .merge_file_7ryd1A
 
 	<form action="/api/" method="POST">
 		<div class="row">

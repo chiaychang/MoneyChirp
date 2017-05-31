@@ -32,9 +32,13 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //the js file for the web page is in "public" folder
+<<<<<<< HEAD
 app.use("/static", express.static(path.join(__dirname, "public")));
 //to the Css path
 app.use(express.static(path.join(__dirname, "/public")));
+=======
+app.use("/static", express.static(path.join(__dirname, "/public")));
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8
 //set up for static directory
 // app.use(express.static(process.cwd() + "./public"));
 
@@ -48,7 +52,13 @@ require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
 require("./routes/data-api-routes.js")(app);
+<<<<<<< HEAD
 require("./routes/barchart-api-routes.js")(app);
+=======
+
+// var twitter = require("./twitter");
+// twitter.getParams();
+>>>>>>> 7231fa8b8c06b1aabc5c5549116604a3c4e8a6f8
 
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.
