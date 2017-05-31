@@ -53,22 +53,22 @@ module.exports = function(app) {
 
 
 	////////////////////////// DELETE COMPANY //////////////////////////////////
-	app.put("/company_delete/:id", function(req, res) {
+	// app.put("/company_delete/:id", function(req, res) {
 
-		var companyId = req.params.id;
+	// 	var companyId = req.params.id;
 
-		db.Following.destroy({
-			where: {
-				companyListId: companyId,
-				UserId: req.user.id
-			}
-		}).then(function() {
-			console.log("data was deleted!!!!");
-			// this redirect refreshes the page to update the data
-			res.redirect("/");
-		});
+	// 	db.Following.destroy({
+	// 		where: {
+	// 			companyListId: companyId,
+	// 			UserId: req.user.id
+	// 		}
+	// 	}).then(function() {
+	// 		console.log("data was deleted!!!!");
+	// 		// this redirect refreshes the page to update the data
+	// 		res.redirect("/");
+	// 	});
 
-	});
+	// });
 	/////////////////////////////////////////////////////////////////////////////
 
 };

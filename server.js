@@ -19,6 +19,8 @@ var db = require("./models");
 var app = express();
 // var PORT = process.env.PORT || 3000;
 app.set("port", (process.env.PORT || 3000));
+//run get calls to BARCHART api
+// var Client = require('node-rest-client').Client;
 
 //set up for the express app to handle data parsing
 app.use(bodyParser.json());
@@ -46,6 +48,7 @@ require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
 require("./routes/data-api-routes.js")(app);
+require("./routes/barchart-api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.

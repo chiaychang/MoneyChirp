@@ -51,7 +51,7 @@
 					{{!-- <ul> --}}
 					{{!-- for each button i need a form action and the ID of the object --}}
 			
-					<form action="/company_delete/{{this.company_lists.id}}?_method=PUT" method="POST">
+					<form action="/barchart_stock/{{this.company_lists.stock_sym}}" method="POST">
 						<div class="comapny-list">
 							<li class="form-control">
 
@@ -60,7 +60,7 @@
 							</li>
 							
 							<span class="input-group-btn">
-								<button class="btn btn-ingo fresh-button" type="submit">Delete</button>
+								<button class="btn btn-ingo fresh-button" type="submit">Get Quote</button>
 							</span>
 						</div>
 					</form>
